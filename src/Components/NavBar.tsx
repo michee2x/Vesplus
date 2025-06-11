@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {IoMdMenu} from "react-icons/io"
 import {LiaTimesSolid} from "react-icons/lia"
 
