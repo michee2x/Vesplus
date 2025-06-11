@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import NavBar from '../Components/NavBar'
 import {motion} from "motion/react"
 import gsap from 'gsap'
@@ -64,7 +64,7 @@ const Hero = () => {
 
       cardsRef.current.forEach(card => {
         if(!card) return;
-      const positionFromCenter = () => (card.offsetLeft + (card.offsetWidth / 2)) - (window.innerWidth /2);
+      //const positionFromCenter = () => (card.offsetLeft + (card.offsetWidth / 2)) - (window.innerWidth /2);
 
       // ScrollTrigger.create({
       //   trigger: containerRef.current,
