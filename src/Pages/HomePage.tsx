@@ -1,11 +1,16 @@
+import ScrollGrid from '../Components/ScrollGrid';
+import Test from '../Components/Test';
 import Hero from '../Sections/Hero'
 
 const HomePage = () => {
   return (
-    <div className='w-full min-h-[500vh] bg-zinc-900'>
+    <div className="w-full min-h-[1000vh] bg-zinc-900">
       <Hero />
+      <div className="w-full relative h-screen">
+        <Test />
+      </div>
     </div>
-  )
+  );
 }
 
 export default HomePage

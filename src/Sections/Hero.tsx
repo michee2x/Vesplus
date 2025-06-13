@@ -4,6 +4,7 @@ import {motion} from "motion/react"
 import gsap from 'gsap'
 import {useGSAP} from "@gsap/react"
 import ScrollTrigger from "gsap/ScrollTrigger"
+import StaggeredText from '../Components/StaggeredText'
 
 gsap.registerPlugin(ScrollTrigger)
 ScrollTrigger.config({
@@ -11,50 +12,63 @@ ScrollTrigger.config({
   autoRefreshEvents: "visibilitychange,DOMContentLoaded,load,resize",
 });
 
-const StaggeredText = ({text, className, delay = 0}:{text:string, className?:string, delay?:number}) => {
-  return (
-    <h1
-      className={`flex gap-1.5 lg:gap-6 w-auto h-fit overflow-hidden ${className}`}
-    >
-      {text.split(" ").map((word, idx) => {
-        return (
-          <motion.li id={`${idx}`} className="flex">
-            {word.split("").map((text, id) => {
-              return (
-                <motion.div
-                  id={`${id}`}
-                  initial={{ y: 90 }}
-                  animate={{ y: 0 }}
-                  transition={{
-                    duration: 1,
-                    ease: "easeInOut",
-                    delay: ((0.1 * id + idx * 0.5) * 0.3) + delay,
-                  }}
-                >
-                  {text}
-                </motion.div>
-              );
-            })}
-          </motion.li>
-        );
-      })}
-    </h1>
-  );
-}
-
 const Hero = () => {
   const cardRef = useRef<HTMLUListElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<(HTMLLIElement | null)[]>([]);
   const cardsWrapperRef = useRef<HTMLUListElement | null>(null);
+  const heading1Ref = useRef<HTMLHeadingElement>(null);
+  const heading2Ref = useRef<HTMLHeadingElement>(null);
+  const heroSectionRef = useRef<HTMLDivElement | null>(null);
 
 
   useGSAP(() => {
     const container = containerRef.current;
     const cardsWrapper = cardsWrapperRef.current;
     const cards = cardsRef.current;
+    const chars1 = heading1Ref.current?.querySelectorAll(".char");
+    const chars2 = heading2Ref.current?.querySelectorAll(".char");
 
-    if (!container || !cardsWrapper) return;
+    if (!container || !cardsWrapper || !chars1 || !chars2 || !heroSectionRef) return;
+
+
+    if (chars1) {
+      gsap.fromTo(
+        chars1,
+        { y: 160, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.04,
+          delay:0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: heading1Ref.current,
+            start: "top 80%",
+          },
+        }
+      );
+    }
+
+    if (chars2) {
+      gsap.fromTo(
+        chars2,
+        { y: 160, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.06,
+          delay:0.6,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: heading2Ref.current,
+            start: "top 80%",
+          },
+        }
+      );
+    }
 
     const totalCards = cards.length;
 
@@ -65,6 +79,7 @@ const Hero = () => {
         end: `+=${totalCards * window.innerWidth * 0.5}`, // scroll distance
         scrub: true,
         pin: true,
+        anticipatePin: 1,
       },
     });
 
@@ -79,6 +94,31 @@ const Hero = () => {
         "+=0.7"
       ); // hang before moving
     });
+
+    const finalCardDuration = 1; // Same as the card tween duration
+
+    tl.fromTo(
+      chars1,
+      { y: 0, opacity: 1 },
+      {
+        y: 160,
+        opacity: 0,
+        duration: finalCardDuration,
+        stagger: 0.02,
+        ease: "power3.out",
+      },
+      `-=1` // ensure it ends with the last card scroll
+    ).to(
+      heroSectionRef.current,
+      {
+        opacity: 0,
+        duration: finalCardDuration,
+        ease: "power3.out",
+      },
+      `-=1`
+    );
+
+    
 
     // Now each card animation when it hits the left
     cards.forEach((card, i) => {
@@ -105,7 +145,7 @@ const Hero = () => {
             gsap.to(card, {
               opacity: 1 - slideProgress,
               y: slideProgress * 400,
-              ease: "power1.inOut",
+              ease: "none",
               overwrite: true,
             });
           }
@@ -117,26 +157,27 @@ const Hero = () => {
   
   
   return (
-    <div className="max-w-screen lg:px-4 h-screen">
+    <div ref={heroSectionRef} className="max-w-screen lg:px-4 min-h-screen">
       <NavBar />
 
       <div
         ref={containerRef}
         className="flex px-3 w-full pt-28 lg:pt-14 h-full flex-col place-content-between"
       >
-        <div className="herotext w-fit h-auto text-[5vw] uppercase font-bold">
+        <div className="herotext  w-fit h-auto text-[5vw] uppercase font-bold">
           <StaggeredText
             text="We Craete the Perfect"
             className="text-white leading-[9vw] lg:leading-[6.6vw] lg:text-[5vw] text-[7vw]"
+            ref={heading1Ref}
           />
           <StaggeredText
             text="Real Estate Market"
             className="text-[#b19876] leading-[9vw] lg:leading-[6.6vw] text-[8.5vw] lg:text-[6.1vw]"
-            delay={0.5}
+            ref={heading2Ref}
           />
         </div>
 
-        <div className="lg:px-6 mb-8 w-full">
+        <div className=" mt-[6rem] w-full">
           <h1 className="text-[17px] mb-5 lg:mb-0 font-semibold lg:text-[1.6rem] pl-1 uppercase">
             A Leading Consulting Firm For Sales
           </h1>
