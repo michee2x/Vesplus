@@ -1,6 +1,4 @@
 import { useRef } from 'react'
-import NavBar from '../Components/NavBar'
-import {motion} from "motion/react"
 import gsap from 'gsap'
 import {useGSAP} from "@gsap/react"
 import ScrollTrigger from "gsap/ScrollTrigger"
@@ -13,7 +11,6 @@ ScrollTrigger.config({
 });
 
 const Hero = () => {
-  const cardRef = useRef<HTMLUListElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<(HTMLLIElement | null)[]>([]);
   const cardsWrapperRef = useRef<HTMLUListElement | null>(null);
@@ -121,7 +118,7 @@ const Hero = () => {
     
 
     // Now each card animation when it hits the left
-    cards.forEach((card, i) => {
+    cards.forEach((card) => {
       if (!card) return;
 
       ScrollTrigger.create({
@@ -157,9 +154,10 @@ const Hero = () => {
   
   
   return (
-    <div ref={heroSectionRef} className="max-w-screen lg:px-4 min-h-screen">
-      <NavBar />
-
+    <div
+      ref={heroSectionRef}
+      className="max-w-screen lg:px-4 min-h-screen"
+    >
       <div
         ref={containerRef}
         className="flex px-3 w-full pt-28 lg:pt-14 h-full flex-col place-content-between"
@@ -211,7 +209,7 @@ const Hero = () => {
                 </li>
               ))}
             </ul>
-            <div className="absolute lg:hidden bottom-5 w-fit h-auto uppercase">
+            <div className="absolute lg:hidden bottom-10 w-fit h-auto uppercase">
               (Scroll For More)
             </div>
           </div>
