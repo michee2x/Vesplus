@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import { GoPlus } from "react-icons/go";
+import StaggeredText from "./StaggeredText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -108,12 +109,13 @@ const Test = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const cardsOverlayRef = useRef<(HTMLDivElement | null)[]>([]);
+  const heading1Ref = useRef<HTMLHeadingElement | null>(null);
 
   // Init Lenis for smooth scrolling
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 6.5, // slower deceleration
-      easing: (t) => 1 - Math.pow(1 - t, 5), // smoother easing
+      duration: 4, // slower deceleration
+      easing: (t) => 1 - Math.pow(1 - t, 5.5), // smoother easing
     });
 
     const raf = (time: number) => {
@@ -132,17 +134,18 @@ const Test = () => {
   useGSAP(
     () => {
       const container = containerRef.current;
-      if (!container || !cardsOverlayRef) return;
+      const chars1 = containerRef.current?.querySelectorAll(".char");
 
+      if (!container || !cardsOverlayRef || !chars1 || chars1.length === 0) return;
       //gsap.set(container, { scale: 0.4 }); // Optional, if removing Tailwind scale
-
+      console.log("This is the chars: ", chars1)
       gsap.to(container, {
         scale: 1,
         duration: 3,
         scrollTrigger: {
           trigger: container,
           start: "top top",
-          end: "+=7000",
+          end: "+=8000",
           pin: true,
           scrub: 0.1,
         },
@@ -152,7 +155,7 @@ const Test = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=7000",
+          end: "+=7500",
           scrub: 0.1,
           anticipatePin: 1,
         },
@@ -181,7 +184,7 @@ const Test = () => {
             opacity: data.opacity,
             x: data.x,
             transformOrigin: data.transformOrigin,
-            duration:88
+            duration: 88,
           },
           {
             scale: 1,
@@ -200,13 +203,17 @@ const Test = () => {
         opacity: 1,
         duration: 150,
       })
-        .to("#inner-first-intro", {
-          opacity: 1,
-          duration:500,
-        }, "+=20")
+        .to(
+          "#inner-first-intro",
+          {
+            opacity: 1,
+            duration: 500,
+          },
+          "+=3"
+        )
         .to("#first-intro", {
           opacity: 0,
-          duration:150,
+          duration: 150,
         });
 
       //Overlay card logic
@@ -220,14 +227,44 @@ const Test = () => {
       });
 
       tl.to("#images-container", {
-        scale:2.5,
-        duration:74
-      })
-      
-      tl.to("#second-intro-text", {
-        opacity:1,
-        duration:150
+        scale: 2.5,
+        duration: 74,
       });
+
+      tl.to("#second-intro-text", {
+        opacity: 1,
+        duration: 150,
+      });
+
+      // tl.fromTo(
+      //   chars1,
+      //   { y: 0, opacity: 1 },
+      //   {
+      //     y: 160,
+      //     opacity: 0,
+      //     duration: 1,
+      //     stagger: 0.02,
+      //     ease: "power3.out",
+      //   },
+      //   `-=1` // ensure it ends with the last card scroll
+      // );
+
+      chars1.forEach((char) => {
+        tl.fromTo(
+          char,
+          { y: 60, opacity: 0, filter: "blur(8px)", position: "absolute", fontSize:"8rem", x:5 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 5,
+            stagger: 0.1,
+            filter: "blur(0px)",
+            ease: "none",
+            fontSize:"inherit",
+            position: "relative",
+          }
+        );
+      })
 
       ScrollTrigger.refresh(); // Optional
     },
@@ -237,7 +274,7 @@ const Test = () => {
   return (
     <div
       ref={containerRef}
-      className="w-full relative -translate-y-[40rem] h-[700vh]"
+      className="w-full relative -translate-y-[40rem] h-[800vh]"
     >
       <div className="[perspective:1000px] relative w-full h-[100vh] overflow-hidden">
         <div
@@ -271,7 +308,7 @@ const Test = () => {
                     <img
                       src={_.imageSrc}
                       alt="Grayscale half"
-                      className="w-[50rem] h-[25rem] object-cover origin-top-left"
+                      className="w-full h-[25rem] object-cover origin-top-left"
                     />
                   </div>
                 </div>
@@ -294,23 +331,69 @@ const Test = () => {
         id="second-intro-text"
         className="w-screen inset-0 p-4 lg:p-0 scale-1 flex gap-8 opacity-0 items-center justify-center h-screen absolute bg-black/95"
       >
-        <div className="w-fit height-fit flex-col lg:flex-row flex gap-10">
+        <div className="flex-col lg:flex-row flex gap-10">
           <div className="lg:text-[1.45rem] text-[16px]">
-            목표는 <br /> 막연히 잘 파는 것이 아닙니다 <br />{" "}
+            {/* 목표는 <br /> 막연히 잘 파는 것이 아닙니다 <br />{" "}
             <span className="text-[#b19876]">완벽한 분양 시장을</span>만드는
-            것입니다
+            것입니다 */}
+            <StaggeredText text="목표는" className="" ref={heading1Ref} />
+            <StaggeredText
+              text="막연히 잘 파는 것이 아닙니다"
+              className=""
+              ref={heading1Ref}
+            />
+            <StaggeredText
+              text="완벽한 분양 시장을"
+              className="text-[#b19876]"
+              ref={heading1Ref}
+            />
+            <StaggeredText text="만드는 것입니다" ref={heading1Ref} />
           </div>
           <div className="flex flex-col gap-6">
-            <div>
-              대한민국에서 <br /> 가장 값비싼 물건을 판매하는 일임에도 불구하고{" "}
-              <br /> 정확한 체계에 따른 영업을 하는 전문가는 찾아볼 수
-              없었습니다 <br />
-              <br /> 철저한 교육을 바탕으로 <br /> 양성된 전문가들에 움직이는
-              분양 시장을 만들기 위해 <br />
-              베스플러스는 분양 영업의 체계화에 나섰고 <br /> 독보적인 분양
-              성과로 증명하였습니다
+            <div className="leading-tight">
+              <StaggeredText
+                text="대한민국에서"
+                className=""
+                ref={heading1Ref}
+              />{" "}
+              <br />{" "}
+              <StaggeredText
+                text="가장 값비싼 물건을 판매하는 일임에도 불구하고 "
+                className=""
+                ref={heading1Ref}
+              />{" "}
+              <br />{" "}
+              <StaggeredText
+                text="정확한 체계에 따른 영업을 하는 전문가는 찾아볼 수 없었습니다"
+                className=""
+                ref={heading1Ref}
+              />{" "}
+              <br />{" "}
+              <StaggeredText
+                text="철저한 교육을 바탕으로"
+                className=" mt-10"
+                ref={heading1Ref}
+              />
+              <br />{" "}
+              <StaggeredText
+                text="양성된 전문가들에 움직이는 분양 시장을 만들기 위해"
+                className=""
+                ref={heading1Ref}
+              />
+              <br />
+              <StaggeredText
+                text="베스플러스는 분양 영업의 체계화에 나섰고"
+                className=""
+                ref={heading1Ref}
+              />
+              <br />{" "}
+              <StaggeredText
+                text="독보적인 분양 성과로 증명하였습니다"
+                className=""
+                ref={heading1Ref}
+              />
             </div>
-            <button className="w-[78%] rounded-full h-[2.5rem] border-white border-[1.2px] p-5 flex items-center justify-center gap-2 text-[22px]">
+            <button className="w-[250px] lg:w-[300px] rounded-full h-[2.5rem] border-white border-[1.2px] p-5 flex items-center justify-center gap-2 text-[22px]">
               <span className="lg:text-[13px] text-[10px] tracking-tight">
                 완벽한 분양 시장 만들어 가는 과정 보기
               </span>

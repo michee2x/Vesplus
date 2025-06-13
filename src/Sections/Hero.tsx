@@ -154,22 +154,19 @@ const Hero = () => {
   
   
   return (
-    <div
-      ref={heroSectionRef}
-      className="max-w-screen lg:px-4 min-h-screen"
-    >
+    <div ref={heroSectionRef} className="max-w-screen lg:px-4 min-h-screen">
       <div
         ref={containerRef}
         className="flex px-3 w-full pt-28 lg:pt-14 h-full flex-col place-content-between"
       >
         <div className="herotext  w-fit h-auto text-[5vw] uppercase font-bold">
           <StaggeredText
-            text="We Craete the Perfect"
+            text="Optimize The UI Experience"
             className="text-white leading-[9vw] lg:leading-[6.6vw] lg:text-[5vw] text-[7vw]"
             ref={heading1Ref}
           />
           <StaggeredText
-            text="Real Estate Market"
+            text="And Awe The Eyes..."
             className="text-[#b19876] leading-[9vw] lg:leading-[6.6vw] text-[8.5vw] lg:text-[6.1vw]"
             ref={heading2Ref}
           />
@@ -180,19 +177,19 @@ const Hero = () => {
             A Leading Consulting Firm For Sales
           </h1>
 
-          <div className="h-[450px] overflow-hidden relative lg:h-auto w-full">
+          <div className="h-[480px] overflow-hidden relative lg:h-auto w-full">
             <ul
               ref={cardsWrapperRef}
               className="flex h-full gap-2 items-center"
               style={{ width: "max-content" }}
             >
               {[
-                "http://localhost:5173/1694012779makereignteampagelukeengel.png",
-                "/1694012819makereignteampagenataliedecanha.png",
-                "/1694073882makereignpagecaseethnicmaskfloating2x.jpg",
-                "/1694074773makereigntbcwomanafrohairstylevodacomlogo2x.jpg",
-                "/1694170255makereignpagecaseappagencyclientmobile2x.jpg",
-                "/1694539877makereignpagecaseclientphotography2x%20(1).png",
+                "https://images.unsplash.com/photo-1634703080363-98f94e5a1076?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fFNjaWZpJTIwZ3V5fGVufDB8fDB8fHwy",
+                "https://images.unsplash.com/photo-1655777124904-0b1ac542841b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fFNjaWZpJTIwZ3V5fGVufDB8fDB8fHwy",
+                "https://images.unsplash.com/photo-1737648055522-549f619dd904?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fFNjaWZpJTIwYXJ0aWZhY3R8ZW58MHx8MHx8fDI%3D",
+                "https://images.unsplash.com/photo-1576934052291-cc1f5cc9b9cf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzd8fFNjaWZpJTIwY2Fyc3xlbnwwfHwwfHx8Mg%3D%3D",
+                "https://images.unsplash.com/photo-1702499903230-867455db1752?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8U2NpZmklMjBwaG9uZXxlbnwwfHwwfHx8Mg%3D%3D",
+                "https://images.unsplash.com/photo-1583307709855-88a955597645?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDV8fHNjaWZpJTIwd2lsZGxpZmV8ZW58MHx8MHx8fDI%3D",
               ].map((e, i) => (
                 <li
                   key={i}

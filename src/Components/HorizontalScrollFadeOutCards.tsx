@@ -33,7 +33,7 @@ export default function HorizontalScrollSection() {
       });
 
       // Each card's fade and slide animation
-      cardsRef.current.forEach((card, index) => {
+      cardsRef.current.forEach((card) => {
         if (!card) return;
 
         ScrollTrigger.create({
