@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <div className="w-screen z-[4000] fixed flex flex-col lg:flex-row justify-between lg:items-start items-center lg:pr-6 py-2 lg:py-4 h-auto">
       <div className="flex z-10 px-3 justify-between items-center w-full lg:w-fit h-auto">
-        <h1 className="text-lg lg:text-2xl">VESPLUS</h1>
+        <h1 className="text-lg lg:text-2xl">michee2x</h1>
         <span
           onClick={() => setShowSideBar((prev) => !prev)}
           className="text-3xl  lg:hidden text-zinc-100"

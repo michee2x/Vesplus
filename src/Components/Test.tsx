@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import { GoPlus } from "react-icons/go";
 import StaggeredText from "./StaggeredText";
+import {motion} from "motion/react"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -110,6 +111,8 @@ const Test = () => {
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const cardsOverlayRef = useRef<(HTMLDivElement | null)[]>([]);
   const heading1Ref = useRef<HTMLHeadingElement | null>(null);
+  const tagCardsRef = useRef<(HTMLLIElement | null)[]>([])
+  const imageCardRef = useRef<HTMLDivElement | null>(null)
 
   // Init Lenis for smooth scrolling
   useEffect(() => {
@@ -136,9 +139,10 @@ const Test = () => {
       const container = containerRef.current;
       const chars1 = containerRef.current?.querySelectorAll(".char");
 
-      if (!container || !cardsOverlayRef || !chars1 || chars1.length === 0) return;
+      if (!container || !cardsOverlayRef || !chars1 || chars1.length === 0 || !tagCardsRef)
+        return;
       //gsap.set(container, { scale: 0.4 }); // Optional, if removing Tailwind scale
-      console.log("This is the chars: ", chars1)
+      console.log("This is the chars: ", chars1);
       gsap.to(container, {
         scale: 1,
         duration: 3,
@@ -155,7 +159,7 @@ const Test = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=7500",
+          end: "+=8000",
           scrub: 0.1,
           anticipatePin: 1,
         },
@@ -236,23 +240,17 @@ const Test = () => {
         duration: 150,
       });
 
-      // tl.fromTo(
-      //   chars1,
-      //   { y: 0, opacity: 1 },
-      //   {
-      //     y: 160,
-      //     opacity: 0,
-      //     duration: 1,
-      //     stagger: 0.02,
-      //     ease: "power3.out",
-      //   },
-      //   `-=1` // ensure it ends with the last card scroll
-      // );
-
       chars1.forEach((char) => {
         tl.fromTo(
           char,
-          { y: 60, opacity: 0, filter: "blur(8px)", position: "absolute", fontSize:"8rem", x:5 },
+          {
+            y: 60,
+            opacity: 0,
+            filter: "blur(8px)",
+            position: "absolute",
+            fontSize: "8rem",
+            x: 5,
+          },
           {
             y: 0,
             opacity: 1,
@@ -260,23 +258,131 @@ const Test = () => {
             stagger: 0.1,
             filter: "blur(0px)",
             ease: "none",
-            fontSize:"inherit",
+            fontSize: "inherit",
             position: "relative",
           }
         );
+      });
+
+      tl.to("#images-container", {
+        scale: 1,
+        duration: 74,
+      }).to("#second-intro-text", {
+        opacity: 0,
+        duration: 150,
+      });
+
+      tl.to(".images", {
+        opacity: 0,
+        duration: 250,
+      });
+
+      /**
+       * This section is to move the different cards to the center of the parent element
+       */
+
+      //const container = cardsRef.current[0]?.offsetParent; // Common container of all cards
+      const targetCard = cardsRef.current[4];
+
+      if (!targetCard) return;
+
+      const targetX = targetCard.offsetLeft;
+      const targetY = targetCard.offsetTop;
+
+      // 2. Add a label to start the cards' center animation
+      tl.add("centerCardsStart");
+
+      cardsRef.current.forEach((card, idx) => {
+        if (!card || idx === 4) return;
+
+        const cardX = card.offsetLeft;
+        const cardY = card.offsetTop;
+
+        const deltaX = targetX - cardX;
+        const deltaY = targetY - cardY;
+
+        tl.to(
+          card,
+          {
+            zIndex: idx * 10,
+            x: deltaX,
+            y: deltaY,
+            duration: 200 + 10 * idx,
+            ease: "power2.inOut",
+          },
+          "centerCardsStart" // all start at same label
+        );
+      });
+      tl.add("reduce-cards-size")
+      cardsRef.current.forEach(card => {
+        if(!card) return;
+        tl.to(
+          card,
+          {
+            width: tagCardsRef.current[4]?.getBoundingClientRect().width,
+            height: tagCardsRef.current[4]?.getBoundingClientRect().height,
+            opacity:0,
+            duration:50
+          },
+          "reduce-cards-size"
+        );
       })
 
+      tl.to("#tagged-cards-container", {
+        opacity:1
+      });
+
+      tl.add("tagged-card-animation")
+      
+      /**
+       * move in from the center
+       */
+
+      tagCardsRef.current.forEach((card) => {
+        if (!imageCardRef.current) return;
+
+        const containerRect = imageCardRef.current.getBoundingClientRect();
+        const targetX = containerRect.left + containerRect.width / 2;
+        const targetY = containerRect.top + containerRect.height / 2;
+        if (!card) return;
+
+        const cardRect = card.getBoundingClientRect();
+        const cardCenterX = cardRect.left + cardRect.width / 2;
+        const cardCenterY = cardRect.top + cardRect.height / 2;
+
+        const deltaX = targetX - cardCenterX;
+        const deltaY = targetY - cardCenterY;
+
+        tl.fromTo(
+          card,
+          {
+            x: deltaX,
+            y: deltaY,
+          },
+          {
+            x: 0,
+            y: 0,
+            duration: 200,
+            ease: "power3.out",
+          },
+          "tagged-card-animation"
+        );
+      });
+
+
+      tl.to(".tagged-card", {
+        color: "white",
+        duration:100
+      });
+      
       ScrollTrigger.refresh(); // Optional
     },
     { scope: containerRef }
   );
 
   return (
-    <div
-      ref={containerRef}
-      className="w-full relative -translate-y-[40rem] h-[800vh]"
-    >
-      <div className="[perspective:1000px] relative w-full h-[100vh] overflow-hidden">
+    <div ref={containerRef} className="w-full relative min-h-[100vh]">
+      <div ref={imageCardRef} className="[perspective:1000px] relative w-full h-[100vh] overflow-hidden">
         <div
           id="images-container"
           className="[perspective:1000px] scale-1 relative w-full gap-1 px-1.5 grid grid-cols-3 h-[100vh] "
@@ -291,9 +397,9 @@ const Test = () => {
                   transformOrigin: _.transformOrigin,
                   opacity: 1,
                 }}
-                className="w-[100%] relative h-[250px] overflow-hidden lg:h-[100%]"
+                className="w-[100%] border-[.1px] border-white/60 relative h-[250px] overflow-hidden lg:h-[100%]"
               >
-                <div className="relative w-full h-64">
+                <div className="relative images w-full h-64">
                   <img
                     src={_.imageSrc}
                     alt="Split image"
@@ -317,6 +423,37 @@ const Test = () => {
           })}
         </div>
       </div>
+
+      <div id="tagged-cards-container" className="w-full h-full absolute opacity-0 inset-0">
+        <h1 className="lg:text-xl text-[12px] tagged-card text-transparent text-center mt-[3rem] lg:mt-[12rem] font-bold">
+          베스플러스는 독자적인 체계를 통해 <br /> 대한민국 최고의 분양대행사로
+          자리매김하고 있습니다
+        </h1>
+
+        <div className="w-full list-none gap-6 lg:gap-3 mt-6 lg:mt-10 px-3 h-auto flex-col lg:flex-row flex justify-evenly items-center">
+          {[1, 2, 3, 4].map((e, idx) => {
+            return (
+              <li
+                ref={(e) => {
+                  tagCardsRef.current[idx] = e;
+                }}
+                key={e}
+                className="lg:w-1/4  w-[85%] flex flex-col place-content-between tagged-card p-2 lg:p-6 font-semibold text-transparent h-[8rem] lg:h-[10rem] border-[.5px] border-white/90 "
+              >
+                <h2 className="lg:mb-1">분양대행</h2>
+                <span className="w-full justify-end flex-1 lg:gap-3 flex items-end flex-col lg:h-auto">
+                  <h1 className="lg:text-3xl text-[18px] font-bold">21건</h1>
+                  <span className="text-right text-[10px] lg:text-[12px]">
+                    체계화된 분양 대행 시스템을 기반으로 <br /> 지속적인 성과를
+                    쌓고 있습니다
+                  </span>
+                </span>
+              </li>
+            );
+          })}
+        </div>
+      </div>
+
       <div
         id="first-intro"
         className="w-screen inset-0 text-[16px] lg:text-2xl font-semibold scale-1 flex gap-8 opacity-0 items-center justify-center h-screen absolute bg-black/95"
@@ -393,12 +530,22 @@ const Test = () => {
                 ref={heading1Ref}
               />
             </div>
-            <button className="w-[250px] lg:w-[300px] rounded-full h-[2.5rem] border-white border-[1.2px] p-5 flex items-center justify-center gap-2 text-[22px]">
+            <motion.button
+              animate={{
+                x: true ? [0, -5, 5, -5, 5, 0] : 0,
+              }}
+              transition={{
+                duration: 0.5,
+                ease: "linear",
+                repeat: Infinity,
+              }}
+              className="w-[250px] mt-4 lg:w-[300px] rounded-full h-[2.5rem] border-white border-[1.2px] p-5 flex items-center justify-center gap-2 text-[22px]"
+            >
               <span className="lg:text-[13px] text-[10px] tracking-tight">
                 완벽한 분양 시장 만들어 가는 과정 보기
               </span>
               <GoPlus />
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>

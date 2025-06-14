@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import {useGSAP} from "@gsap/react"
 import ScrollTrigger from "gsap/ScrollTrigger"
 import StaggeredText from '../Components/StaggeredText'
+import {motion} from "motion/react"
 
 gsap.registerPlugin(ScrollTrigger)
 ScrollTrigger.config({
@@ -161,12 +162,12 @@ const Hero = () => {
       >
         <div className="herotext  w-fit h-auto text-[5vw] uppercase font-bold">
           <StaggeredText
-            text="Optimize The UI Experience"
+            text="Fuck Simple!"
             className="text-white leading-[9vw] lg:leading-[6.6vw] lg:text-[5vw] text-[7vw]"
             ref={heading1Ref}
           />
           <StaggeredText
-            text="And Awe The Eyes..."
+            text="I Want Magic..."
             className="text-[#b19876] leading-[9vw] lg:leading-[6.6vw] text-[8.5vw] lg:text-[6.1vw]"
             ref={heading2Ref}
           />
@@ -196,9 +197,18 @@ const Hero = () => {
                   ref={(el) => {
                     cardsRef.current[i] = el;
                   }}
-                  className="min-w-[120vw] lg:min-w-[40vw] relative h-[35vh] lg:h-[40vh] bg-teal-500 rounded-2xl flex items-center justify-center text-4xl font-bold"
+                  className="min-w-[120vw] lg:min-w-[40vw] relative h-[35vh] lg:h-[40vh] rounded-2xl flex items-center justify-center text-4xl font-bold"
                 >
-                  <img
+                  <motion.img
+                    animate={{
+                      x: true ? [0, -2.2, 2.2, -2.2, 2.2, 0] : 0,
+                      y: true ? [0, 2.2, -2.2, 2.2, -2.2, 0] : 0,
+                    }}
+                    transition={{
+                        duration: 0.5,
+                        ease: "linear",
+                        repeat: Infinity
+                    }}
                     className="w-full absolute inset-0 h-full object-cover"
                     src={e}
                     alt={e}

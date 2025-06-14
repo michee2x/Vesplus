@@ -6,6 +6,9 @@ const HomePage = () => {
     <div className="w-full min-h-[1000vh] bg-zinc-950">
       <Hero />
         <Test />
+        <div className='w-full h-[200vh] bg-blue-600'>
+
+        </div>
     </div>
   );
 }
