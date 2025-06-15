@@ -162,7 +162,7 @@ const Hero = () => {
       >
         <div className="herotext  w-fit h-auto text-[5vw] uppercase font-bold">
           <StaggeredText
-            text="Fuck Simple!"
+            text="Dump Simple!"
             className="text-white mt-4 leading-[9vw] lg:leading-[6.6vw] lg:text-[5vw] text-[7vw]"
             ref={heading1Ref}
           />
