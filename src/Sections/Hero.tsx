@@ -126,7 +126,7 @@ const Hero = () => {
         trigger: card,
         containerAnimation: tl,
         start: "left left",
-        end: "+=600",
+        end: "+=300",
         scrub: true,
         onUpdate: (self) => {
           const progress = self.progress;
@@ -158,24 +158,24 @@ const Hero = () => {
     <div ref={heroSectionRef} className="max-w-screen lg:px-4 min-h-screen">
       <div
         ref={containerRef}
-        className="flex px-3 w-full pt-28 lg:pt-14 h-full flex-col place-content-between"
+        className="flex px-3 w-full pt-28 lg:pt-14 max-h-screen flex-col lg:place-content-between"
       >
         <div className="herotext  w-fit h-auto text-[5vw] uppercase font-bold">
           <StaggeredText
             text="Fuck Simple!"
-            className="text-white leading-[9vw] lg:leading-[6.6vw] lg:text-[5vw] text-[7vw]"
+            className="text-white mt-4 leading-[9vw] lg:leading-[6.6vw] lg:text-[5vw] text-[7vw]"
             ref={heading1Ref}
           />
           <StaggeredText
             text="I Want Magic..."
-            className="text-[#b19876] leading-[9vw] lg:leading-[6.6vw] text-[8.5vw] lg:text-[6.1vw]"
+            className="text-white/70 leading-[9vw] lg:leading-[6.6vw] text-[8.5vw] lg:text-[6.1vw]"
             ref={heading2Ref}
           />
         </div>
 
         <div className=" mt-[6rem] w-full">
-          <h1 className="text-[17px] mb-5 lg:mb-0 font-semibold lg:text-[1.6rem] pl-1 uppercase">
-            A Leading Consulting Firm For Sales
+          <h1 className="text-[17px] mb-5 lg:mb-0 font-semibold lg:text-[1.4rem] pl-1 uppercase">
+            Advanced animated Sections Unvieled
           </h1>
 
           <div className="h-[480px] overflow-hidden relative lg:h-auto w-full">
@@ -205,9 +205,9 @@ const Hero = () => {
                       y: true ? [0, 2.2, -2.2, 2.2, -2.2, 0] : 0,
                     }}
                     transition={{
-                        duration: 0.5,
-                        ease: "linear",
-                        repeat: Infinity
+                      duration: 0.5,
+                      ease: "linear",
+                      repeat: Infinity,
                     }}
                     className="w-full absolute inset-0 h-full object-cover"
                     src={e}

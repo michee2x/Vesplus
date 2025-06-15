@@ -5,7 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import { GoPlus } from "react-icons/go";
 import StaggeredText from "./StaggeredText";
-import {motion} from "motion/react"
+import { motion } from "motion/react";
+import { CrazyParallax } from "./PortfolioScrollEffect";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -109,16 +110,19 @@ const imageData: imageDts = [
 const Test = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const cardsOverlayRef = useRef<(HTMLDivElement | null)[]>([]);
+  const cardsOverlayRef = useRef<(HTMLImageElement | null)[]>([]);
+  const cardsUnderlayRef = useRef<(HTMLImageElement | null)[]>([]);
   const heading1Ref = useRef<HTMLHeadingElement | null>(null);
-  const tagCardsRef = useRef<(HTMLLIElement | null)[]>([])
-  const imageCardRef = useRef<HTMLDivElement | null>(null)
+  const tagCardsRef = useRef<(HTMLLIElement | null)[]>([]);
+  const imageCardRef = useRef<HTMLDivElement | null>(null);
+  const wrappers = useRef<(HTMLDivElement | null)[]>([]);
+  const inners = useRef<(HTMLDivElement | null)[]>([]);
 
   // Init Lenis for smooth scrolling
   useEffect(() => {
     const lenis = new Lenis({
       duration: 4, // slower deceleration
-      easing: (t) => 1 - Math.pow(1 - t, 5.5), // smoother easing
+      easing: (t) => 1 - Math.pow(1 - t, 6.5), // smoother easing
     });
 
     const raf = (time: number) => {
@@ -139,7 +143,13 @@ const Test = () => {
       const container = containerRef.current;
       const chars1 = containerRef.current?.querySelectorAll(".char");
 
-      if (!container || !cardsOverlayRef || !chars1 || chars1.length === 0 || !tagCardsRef)
+      if (
+        !container ||
+        !cardsOverlayRef ||
+        !chars1 ||
+        chars1.length === 0 ||
+        !tagCardsRef
+      )
         return;
       //gsap.set(container, { scale: 0.4 }); // Optional, if removing Tailwind scale
       console.log("This is the chars: ", chars1);
@@ -203,6 +213,7 @@ const Test = () => {
           "<"
         );
       });
+
       tl.to("#first-intro", {
         opacity: 1,
         duration: 150,
@@ -222,12 +233,29 @@ const Test = () => {
 
       //Overlay card logic
 
-      cardsOverlayRef.current.forEach((card) => {
-        if (!card) return;
-        tl.to(card, {
-          width: 0,
-          duration: 174,
-        });
+      cardsOverlayRef.current.forEach((card, index) => {
+        tl.fromTo(
+          card,
+          {
+            clipPath: "inset(0 100% 0 0)", // Start: fully hidden from right
+          },
+          {
+            clipPath: "inset(0 0% 0 0)", // End: fully revealed
+            duration: 150,
+            ease: "power2.out",
+          }
+        ).fromTo(
+          cardsUnderlayRef.current[index],
+          {
+            clipPath: "inset(0 0% 0 0%)", // Start: fully hidden from right
+          },
+          {
+            clipPath: "inset(0 0 0 100%)", // End: fully revealed
+            duration: 150,
+            ease: "power2.out",
+          },
+          "<"
+        );
       });
 
       tl.to("#images-container", {
@@ -313,27 +341,27 @@ const Test = () => {
           "centerCardsStart" // all start at same label
         );
       });
-      tl.add("reduce-cards-size")
-      cardsRef.current.forEach(card => {
-        if(!card) return;
+      tl.add("reduce-cards-size");
+      cardsRef.current.forEach((card) => {
+        if (!card) return;
         tl.to(
           card,
           {
             width: tagCardsRef.current[4]?.getBoundingClientRect().width,
             height: tagCardsRef.current[4]?.getBoundingClientRect().height,
-            opacity:0,
-            duration:50
+            opacity: 0,
+            duration: 50,
           },
           "reduce-cards-size"
         );
-      })
-
-      tl.to("#tagged-cards-container", {
-        opacity:1
       });
 
-      tl.add("tagged-card-animation")
-      
+      tl.to("#tagged-cards-container", {
+        opacity: 1,
+      });
+
+      tl.add("tagged-card-animation");
+
       /**
        * move in from the center
        */
@@ -369,20 +397,50 @@ const Test = () => {
         );
       });
 
-
       tl.to(".tagged-card", {
         color: "white",
-        duration:100
+        duration: 100,
       });
-      
+
+      wrappers.current.forEach((card, index) => {
+        tl.fromTo(
+          card,
+          {
+            transform: "translate(0%, 100%) translate3d(0px, 0px, 0px)",
+          },
+          {
+            transform: "translate(0%, 0%) translate3d(0px, 0px, 0px)",
+            duration: 200,
+            ease: "power2.out",
+          }
+        ).fromTo(
+          inners.current[index],
+          {
+            transform: "translate(0%, -100%) translate3d(0px, 0px, 0px)",
+          },
+          {
+            transform: "translate(0%, 0%) translate3d(0px, 0px, 0px)",
+            duration: 200,
+            ease: "power2.out",
+          },
+          "<"
+        );
+      });
+
       ScrollTrigger.refresh(); // Optional
     },
     { scope: containerRef }
   );
 
   return (
-    <div ref={containerRef} className="w-full relative min-h-[100vh]">
-      <div ref={imageCardRef} className="[perspective:1000px] relative w-full h-[100vh] overflow-hidden">
+    <div
+      ref={containerRef}
+      className="w-full -translate-y-[30rem] relative min-h-[100vh]"
+    >
+      <div
+        ref={imageCardRef}
+        className="[perspective:1000px] relative w-full h-[100vh] overflow-hidden"
+      >
         <div
           id="images-container"
           className="[perspective:1000px] scale-1 relative w-full gap-1 px-1.5 grid grid-cols-3 h-[100vh] "
@@ -399,24 +457,35 @@ const Test = () => {
                 }}
                 className="w-[100%] border-[.1px] border-white/60 relative h-[250px] overflow-hidden lg:h-[100%]"
               >
-                <div className="relative images w-full h-64">
+                <div className="w-full h-full relative">
+                  {/* Grayscale left half */}
                   <img
-                    src={_.imageSrc}
-                    alt="Split image"
-                    className="w-full h-full object-cover"
-                  />
-                  <div
+                    src="https://images.unsplash.com/photo-1634703080363-98f94e5a1076?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fFNjaWZpJTIwZ3V5fGVufDB8fDB8fHwy"
+                    alt="Grayscale Half"
+                    className="absolute top-0 left-0 w-full h-full object-cover"
                     ref={(e) => {
                       cardsOverlayRef.current[idx] = e;
                     }}
-                    className="absolute inset-0 w-full transition-transform duration-500 filter grayscale overflow-hidden"
-                  >
-                    <img
-                      src={_.imageSrc}
-                      alt="Grayscale half"
-                      className="w-full h-[25rem] object-cover origin-top-left"
-                    />
-                  </div>
+                    style={{
+                      filter: "grayscale(100%)",
+                      transition: "transform 0.5s ease",
+                      zIndex: 10,
+                    }}
+                  />
+
+                  {/* Color right half */}
+                  <img
+                    src="https://images.unsplash.com/photo-1634703080363-98f94e5a1076?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fFNjaWZpJTIwZ3V5fGVufDB8fDB8fHwy"
+                    alt="Color Half"
+                    ref={(e) => {
+                      cardsUnderlayRef.current[idx] = e;
+                    }}
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    style={{
+                      transition: "transform 0.5s ease",
+                      zIndex: 20,
+                    }}
+                  />
                 </div>
               </div>
             );
@@ -424,7 +493,10 @@ const Test = () => {
         </div>
       </div>
 
-      <div id="tagged-cards-container" className="w-full h-full absolute opacity-0 inset-0">
+      <div
+        id="tagged-cards-container"
+        className="w-full h-full absolute opacity-0 inset-0"
+      >
         <h1 className="lg:text-xl text-[12px] tagged-card text-transparent text-center mt-[3rem] lg:mt-[12rem] font-bold">
           베스플러스는 독자적인 체계를 통해 <br /> 대한민국 최고의 분양대행사로
           자리매김하고 있습니다
@@ -438,7 +510,7 @@ const Test = () => {
                   tagCardsRef.current[idx] = e;
                 }}
                 key={e}
-                className="lg:w-1/4  w-[85%] flex flex-col place-content-between tagged-card p-2 lg:p-6 font-semibold text-transparent h-[8rem] lg:h-[10rem] border-[.5px] border-white/90 "
+                className="lg:w-1/4  w-[85%] flex flex-col bg-zinc-950 place-content-between tagged-card p-2 lg:p-6 font-semibold text-transparent h-[8rem] lg:h-[10rem] border-[.5px] border-white/90 "
               >
                 <h2 className="lg:mb-1">분양대행</h2>
                 <span className="w-full justify-end flex-1 lg:gap-3 flex items-end flex-col lg:h-auto">
@@ -454,15 +526,17 @@ const Test = () => {
         </div>
       </div>
 
+      <CrazyParallax wrappers={wrappers} inners={inners} />
+
       <div
         id="first-intro"
         className="w-screen inset-0 text-[16px] lg:text-2xl font-semibold scale-1 flex gap-8 opacity-0 items-center justify-center h-screen absolute bg-black/95"
       >
-        아직 분양 시장은{" "}
+        Into the world{" "}
         <span id="inner-first-intro" className="text-[#b19876] opacity-0">
-          완벽
+          crafted
         </span>
-        하지 않습니다
+        for your assesibiliy
       </div>
       <div
         id="second-intro-text"
@@ -473,59 +547,47 @@ const Test = () => {
             {/* 목표는 <br /> 막연히 잘 파는 것이 아닙니다 <br />{" "}
             <span className="text-[#b19876]">완벽한 분양 시장을</span>만드는
             것입니다 */}
-            <StaggeredText text="목표는" className="" ref={heading1Ref} />
+            <StaggeredText text="Crafted" className="" ref={heading1Ref} />
             <StaggeredText
-              text="막연히 잘 파는 것이 아닙니다"
+              text="for the eye, perfected"
               className=""
               ref={heading1Ref}
             />
             <StaggeredText
-              text="완벽한 분양 시장을"
+              text="for the touch"
               className="text-[#b19876]"
               ref={heading1Ref}
             />
-            <StaggeredText text="만드는 것입니다" ref={heading1Ref} />
+            <StaggeredText text="— this is UI reimagined." ref={heading1Ref} />
           </div>
           <div className="flex flex-col gap-6">
             <div className="leading-tight">
               <StaggeredText
-                text="대한민국에서"
+                text="Not just a user interface"
                 className=""
                 ref={heading1Ref}
               />{" "}
               <br />{" "}
               <StaggeredText
-                text="가장 값비싼 물건을 판매하는 일임에도 불구하고 "
+                text="— an experience choreographed to perfection."
                 className=""
                 ref={heading1Ref}
               />{" "}
               <br />{" "}
               <StaggeredText
-                text="정확한 체계에 따른 영업을 하는 전문가는 찾아볼 수 없었습니다"
+                text="Where motion meets emotion, and design becomes destiny."
                 className=""
                 ref={heading1Ref}
               />{" "}
               <br />{" "}
               <StaggeredText
-                text="철저한 교육을 바탕으로"
+                text="An interface so seamless"
                 className=" mt-10"
                 ref={heading1Ref}
               />
               <br />{" "}
               <StaggeredText
-                text="양성된 전문가들에 움직이는 분양 시장을 만들기 위해"
-                className=""
-                ref={heading1Ref}
-              />
-              <br />
-              <StaggeredText
-                text="베스플러스는 분양 영업의 체계화에 나섰고"
-                className=""
-                ref={heading1Ref}
-              />
-              <br />{" "}
-              <StaggeredText
-                text="독보적인 분양 성과로 증명하였습니다"
+                text="it disappears — leaving only the feeling behind."
                 className=""
                 ref={heading1Ref}
               />
