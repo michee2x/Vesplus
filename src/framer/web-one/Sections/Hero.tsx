@@ -59,7 +59,7 @@ const Hero = () => {
       <div className="z-10 relative w-full overflow-hidden h-screen flex flex-col items-center justify-center backdrop-blur-[46px] bg-inherit/[0.9] px-6  pb-16">
         <h3
           id="hero-first-text"
-          className=" text-[34px] mt-10 lg:text-7xl lg:font-bold h-fit w-fit leading-[36px] text-center -tracking-[1px]"
+          className=" text-[34px] text-white/90 mt-10 lg:text-7xl font-bold h-fit w-fit leading-[36px] text-center -tracking-[1px]"
           data-styles-preset="Q9YGoPiQM"
         >
           Brand It With Macelo...
@@ -75,7 +75,7 @@ const Hero = () => {
 
         <p
           id="hero-body-text"
-          className="text-[16px] lg:text-2xl lg:max-w-3xl opacity-0 text-center tracking-tighter leading-[26px] text-white"
+          className="text-[16px] lg:text-2xl lg:max-w-3xl opacity-0 text-center tracking-tighter leading-[26px] text-white/70 font-medium"
         >
           Build your site effortlessly and showcase your work with confidence.
           Ready to stand out? Get started today!
