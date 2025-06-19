@@ -1,11 +1,13 @@
 import Test from "../Components/Test";
 import Hero from "../Sections/Hero";
 import {motion} from "motion/react"
+//import Hero2 from "../Sections/Hero2";
 
 const HomePage = () => {
   return (
     <div className="max-w-screen min-h-[100vh] relative bg-black">
       <Hero />
+      {/* <Hero2 /> */}
       <Test />
       <div className="w-full p-5 flex flex-col justify-end lg:p-16 h-[70vh] absolute bottom-0">
         <div className=" text-4xl lg:h-[7rem] h-auto w-fit lg:text-[7rem] flex font-bold text-white/80">
