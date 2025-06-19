@@ -65,8 +65,8 @@ const Nav = () => {
             } h-[2px] bg-white/[0.8]`}
           />
           <span className="flex w-[2em] h-[1.2px]">
-            <span id='first-line' className="flex w-1/2 h-[1.2px] bg-white/[0.8]" />
-            <span id='second-line' className="flex w-1/2 h-[1.2px] bg-white/[0.8]" />
+            <span id='first-line' className="flex w-1/2 h-[2px] bg-white/[0.8]" />
+            <span id='second-line' className="flex w-1/2 h-[2px] bg-white/[0.8]" />
           </span>
           <span
             className={`flex transform w-[2em] ${
