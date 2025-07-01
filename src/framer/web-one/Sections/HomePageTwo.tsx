@@ -1,6 +1,8 @@
 import { MdShoppingCart } from "react-icons/md";
 import RotatingCards from "../components/RotatingCards";
 import Cta3dPerspective from "../components/Cta-3d-Perspective";
+import NavBar from "../../../Components/NavBar";
+import Nav from "../components/nav";
 
 const HeroTwo = () => {
   return (
@@ -14,6 +16,7 @@ const HeroTwo = () => {
           return <img src={e} alt="icon" className="w-5 h-5 invert" />;
         })}
       </div>
+      <Nav />
       <img
         loading="eager"
         src="https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/6816082703b8cabc97aef253_SideCutout.svg"
@@ -44,9 +47,9 @@ const HeroTwo = () => {
           </div>
         </div>
         {/* HERO */}
-        <div className="w-full [perspective:100vh] h-[120vh] relative">
+        <div className="w-full [perspective:100vh] h-[97vh] relative">
           <h1
-            className="hero-text mix-blend-difference text-white absolute text-[30vw] bottom-5 right-5 lg:right-0 lg:bottom-16 leading-[8rem] text-overflow lg:text-[20vw] font-semibold z-50 "
+            className="hero-text mix-blend-difference lg:hidden text-white absolute text-[30vw] bottom-5 right-5 lg:right-0 lg:bottom-16 leading-[8rem] text-overflow lg:text-[20vw] font-semibold z-50 "
             style={{
               opacity: 1,
               transformStyle: "preserve-3d",
@@ -70,7 +73,7 @@ const HeroTwo = () => {
               ].map(() => (
                 <img
                   src={
-                    "https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/6810b0301bbea2e6c06fea54_Hero5.webp"
+                    "https://cdn.prod.website-files.com/681b04c67ed0d3f6f2904ea1/681c47292714d17c3e81acf4_Surreal-p-1080.png"
                   }
                   alt=""
                   className={`w-full grayscale inline-block will-change-[opacity] duration-500 h-full object-cover absolute`}
