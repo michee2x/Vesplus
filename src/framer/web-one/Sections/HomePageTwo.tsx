@@ -1,7 +1,6 @@
 import { MdShoppingCart } from "react-icons/md";
 import RotatingCards from "../components/RotatingCards";
 import Cta3dPerspective from "../components/Cta-3d-Perspective";
-import NavBar from "../../../Components/NavBar";
 import Nav from "../components/nav";
 
 const HeroTwo = () => {
