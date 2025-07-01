@@ -1,4 +1,3 @@
-import Lenis from '@studio-freight/lenis';
 const Card = ({index}:{index:number}) => {
     return (
       <div

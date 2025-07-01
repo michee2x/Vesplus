@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 export default function PerspectiveCardGallery({ className }:{className?:string}) {
   // Define the perspective transformations for each side
