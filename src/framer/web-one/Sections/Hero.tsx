@@ -39,37 +39,43 @@ const Hero = () => {
             ease: "power3.inOut",
           })
           .to("#button-press-pin", {
+            scale: 0.7,
+            duration: 0.1,
+            ease: "none",
+          })
+          .to("#button-press-pin", {
+            scale: 1,
+            duration: 0.1,
             background:
-              "linear-gradient(180deg, var(--token-f951c3a8-aa43-4825-aa75-915aa92c20d1, rgb(79, 26, 214)) 0%, rgb(128, 89, 227) 100%)",
-              duration:2,
-              ease:"power3.inOut"
-          }, "<")
+                "linear-gradient(180deg, var(--token-f951c3a8-aa43-4825-aa75-915aa92c20d1, rgb(79, 26, 214)) 0%, rgb(128, 89, 227) 100%)",
+            ease: "none",
+          })
           .fromTo(
             "#background",
             {
               y: 500,
             },
             { y: 0, duration: 2, ease: "power4.inOut" },
-            "-=0.3"
+            "<"
           );
 
     })
   return (
-    <section className="w-full relative h-screen">
+    <section className="w-full hidden relative h-screen">
       <div className="z-10 relative w-full overflow-hidden h-screen flex flex-col items-center justify-center backdrop-blur-[46px] bg-inherit/[0.9] px-6  pb-16">
         <h3
           id="hero-first-text"
           className=" text-[34px] text-white/90 mt-10 lg:text-7xl font-bold h-fit w-fit leading-[36px] text-center -tracking-[1px]"
           data-styles-preset="Q9YGoPiQM"
         >
-          Brand It With Macelo...
+          Brand It With Macelo!
         </h3>
 
         <div
-          className="mx-auto flex-none my-6 h-[1px] relative w-[230px]"
+          className="mx-auto flex-none my-6 h-[2px] relative w-[230px] lg:w-[280px]"
           style={{
             background:
-              "linear-gradient(90.00000000000075deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 100%)",
+              "linear-gradient(90.00000000000075deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.50) 50%, rgba(255, 255, 255, 0) 100%)",
           }}
         ></div>
 
