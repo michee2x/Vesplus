@@ -45,7 +45,7 @@ const ScreenOne = () => {
           <div className="flex mt-3">
             {[...Array(5)].map((e, idx) => {
               return (
-                <div key={`${e}`} className="w-10 flex-shrink-0 h-10 -mr-2 overflow-hidden rounded-full border-zinc-800 border-[1.2px] !p-0">
+                <div key={`${e * idx}`} className="w-10 flex-shrink-0 h-10 -mr-2 overflow-hidden rounded-full border-zinc-800 border-[1.2px] !p-0">
                   <img
                     src="src\framer\web-one\images\cardImages\FRBEHMhaBN37RCbMOuky8m2dbQY.webp"
                     alt=""
@@ -399,7 +399,7 @@ const ScreenFive = () => {
           {[1, 2, 3, 4].map((e, idx) => {
             return (
               <div
-                key={`${idx}`}
+                key={`${idx * e}`}
                 className="size-20 lg:size-32 relative overflow-hidden rounded-xl bg-red-500"
               >
                 <img
