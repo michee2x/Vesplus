@@ -22,11 +22,11 @@ const YDeg = useTransform(
   return (
     <div
       ref={container}
-      className="h-[400vh] relative mt-16 lg:mt-40"
+      className="h-[400vh] max-w-screen relative mt-16 lg:mt-40"
     >
       <div
         style={{ perspective: "100vh", transformOrigin: "50%" }}
-        className="flex w-full sticky top-0 items-center justify-center h-screen"
+        className="flex w-screen sticky overflow-hidden top-0 items-center justify-center h-screen"
       >
         <motion.div
           ref={cardContainer}

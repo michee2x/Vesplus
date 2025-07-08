@@ -82,7 +82,7 @@ const Cta3dPerspective = () => {
         {`
           @keyframes scroll {
             to {
-              transform: translateX(-50%);
+              transform: translateX(-45%);
             }
           }
         `}

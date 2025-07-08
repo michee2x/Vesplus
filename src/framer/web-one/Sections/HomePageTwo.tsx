@@ -1,89 +1,23 @@
-import { MdShoppingCart } from "react-icons/md";
 import RotatingCards from "../components/RotatingCards";
 import Cta3dPerspective from "../components/Cta-3d-Perspective";
 import Nav from "../components/nav";
+import ButtonTwo from "../components/buttons/ButtonTwo";
+import ThemeScroll from "../components/ThemeScroll";
+import MouseDot from "../components/MouseDot";
+import Pulsing from "../components/Pulsing";
+import Hero from "../components/Hero";
 
 const HeroTwo = () => {
   return (
     <div className="max-w-screen min-h-screen flex flex-col  items-center bg-black">
-      <div className=" w-fit h-fit flex flex-col z-50 right-5 lg:left-5 -translate-y-1/2 top-1/2 justify-center items-center gap-8 absolute lg:z-[9000] lg:fixed">
-        {[
-          "https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/67de676f1c598cfa54564ca2_youtube.png",
-          "https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/67de676f1c598cfa54564c9e_instagram.png",
-          "https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/67de676f1c598cfa54564cb0_tiktok.png",
-        ].map((e) => {
-          return <img src={e} alt="icon" className="w-5 h-5 invert" />;
-        })}
-      </div>
+      
       <Nav />
-      <img
-        loading="eager"
-        src="https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/6816082703b8cabc97aef253_SideCutout.svg"
-        alt="hexagon"
-        className="z-40 absolute lg:fixed lg:z-[8000] right-0 lg:rotate-180 lg:left-0 -translate-y-1/2 top-1/2"
-      />
       <div className="w-full h-screen flex flex-col items-center">
-        {/* NAV BAR */}
-        <div className="w-full hidden relative h-[5.7rem] p-3 lg:px-[12.5rem] flexx items-center justify-between">
-          <img
-            src="https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/6810c614f6022f5a9ffceddd_icon2.svg"
-            alt="logo"
-            className="w-9 h-9"
-          />
-
-          <div className="flex w-fit h-fit gap-10 ">
-            {["About", "Services", "Portfolio", "Contact"].map((e) => {
-              return (
-                <span
-                  key={e}
-                  className="text-white/[0.5] text-[19px] cursor-pointer hover:text-white transition-all duration-300"
-                >
-                  {e}
-                </span>
-              );
-            })}
-            <MdShoppingCart className="text-xl mt-1" />
-          </div>
-        </div>
         {/* HERO */}
-        <div className="w-full [perspective:100vh] h-[97vh] relative">
-          <h1
-            className="hero-text mix-blend-difference lg:hidden text-white absolute text-[30vw] bottom-5 right-5 lg:right-0 lg:bottom-16 leading-[8rem] text-overflow lg:text-[20vw] font-semibold z-50 "
-            style={{
-              opacity: 1,
-              transformStyle: "preserve-3d",
-              transform:
-                "rotateY(20deg) skewX(-10deg) translate3d(0px, 0px, 0px)",
-              transformOrigin: "50% 100%",
-            }}
-          >
-            ZOOM
-          </h1>
-          <div
-            style={{ clipPath: "polygon(0 0, 100% 0, 100% 70%, 0% 100%)" }}
-            className="hero-flex flex w-full h-full flex-col justify-center relative"
-          >
-            <div className="absolute rounded-2xl overflow-hidden inset-0">
-              {[
-                "https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/6810b0301bbea2e6c06fea54_Hero5.webp",
-                "https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/6810b0301bbea2e6c06fea54_Hero5.webp",
-                "https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/6810b4edfc88c3b3f52c1761_Hero6.webp",
-                "	https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/6810b9a96e755b2b9918ae97_Hero7.webp",
-              ].map(() => (
-                <img
-                  src={
-                    "https://cdn.prod.website-files.com/681b04c67ed0d3f6f2904ea1/681c47292714d17c3e81acf4_Surreal-p-1080.png"
-                  }
-                  alt=""
-                  className={`w-full grayscale inline-block will-change-[opacity] duration-500 h-full object-cover absolute`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+        <Hero />
       </div>
 
-      <main className="w-full h-auto">
+      <main className="w-screen h-auto">
         <div className="w-full lg:h-[130vh] overflow-hidden relative">
           <Cta3dPerspective />
           {/* <BloomRHero /> */}
@@ -180,20 +114,23 @@ const HeroTwo = () => {
 
         <RotatingCards />
 
-        <div className="w-full flex flex-col items-center p-4 mt-16 lg:mt-40 h-screen">
+        <div className="w-full flex flex-col justify-center rounded-2xl items-center py-32 px-4 mt-7 lg:mt-40 min-h-screen">
+          <div className="flex gap-2 items-center">
+            <Pulsing />
+            <h2 className="text-[12px] lg:text-[14px] uppercase text-gray-300 font-medium">
+              Zoom is Framework Agnostic
+            </h2>
+          </div>
           <span
             data-text-fill="true"
-            className="framer-text inline-block font-bold text-[48px] tracking-tight text-transparent bg-clip-text"
+            className="max-w-[90vw] lg:max-w-[60vw] mt-8 h-[min-content] text-center inline-block font-bold text-[30px] lg:text-[68px] tracking-tight text-transparent bg-clip-text"
             style={{
               backgroundImage:
                 "radial-gradient(99% 86% at 50% 50%, rgb(213, 219, 230) 28.387387387387385%, rgb(4, 7, 13) 100%",
             }}
           >
-            <span className="text-">Zoom</span> Is Framework Agnostic{" "}
-          </span>
-          <h2 className="text-[16px] capitalize font-medium mt-10 text-semibold">
             Try Zoom on almost any of your favorite javascript framework!
-          </h2>
+          </span>
 
           <div className="pointer-events-none mt-16 mx-auto flex max-w-xl flex-wrap justify-center gap-10 px-6">
             {[
@@ -267,7 +204,15 @@ const HeroTwo = () => {
               );
             })}
           </div>
+
+          <ButtonTwo className="mt-16" text="Explore Component Variations" />
         </div>
+
+        <ThemeScroll />
+        <MouseDot />
+
+
+        <div className="w-full h-screen bg-zinc-600"></div>
       </main>
     </div>
   );
