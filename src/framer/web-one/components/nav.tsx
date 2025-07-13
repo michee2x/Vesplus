@@ -46,7 +46,7 @@ const Nav = () => {
       }
     })
   return (
-    <div className="fixed lg:px-6 p-6 lg:py-0 z-[9000] flex-col lg:flex-row items-center flex justify-between border-b-[.3px] border-white/[0.2] w-screen min-h-16  bg-inherit/[0.5] backdrop-blur-[20px]">
+    <div className="fixed lg:px-6 p-6 lg:py-0 z-[20000] flex-col lg:flex-row items-center flex justify-between border-b-[.3px] border-white/[0.2] w-screen min-h-16  bg-inherit/[0.5] backdrop-blur-[20px]">
       <div className="w-full lg:w-fit h-auto flex justify-between items-center">
         <span className="text-bold w-fit h-fit overflow-y-hidden text-xl text-white/[0.5] tracking-tighter">
           <span id="logo" className="flex">

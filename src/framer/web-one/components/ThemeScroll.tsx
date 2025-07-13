@@ -535,3 +535,8 @@ const ThemeScroll = () => {
 };
 
 export default ThemeScroll;
+
+
+document.querySelector(
+  "body > div.page-wrapper > div.main-wrapper > section.section.is-home-hero > div.rive__hero > div > canvas"
+);

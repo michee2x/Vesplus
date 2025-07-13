@@ -10,31 +10,24 @@ import Hero from "../components/Hero";
 const HeroTwo = () => {
   return (
     <div className="max-w-screen min-h-screen flex flex-col  items-center bg-black">
-      
       <Nav />
-      <div className="w-full h-screen flex flex-col items-center">
+      <div className="w-full min-h-screen flex flex-col items-center">
         {/* HERO */}
         <Hero />
       </div>
 
-      <main className="w-screen h-auto">
-        <div className="w-full lg:h-[130vh] overflow-hidden relative">
-          <Cta3dPerspective />
-          {/* <BloomRHero /> */}
-        </div>
-        <div className="w-full h-auto">
+      <main className="w-full h-auto">
+        <div className="w-full mt-10 lg:mt-20 h-auto">
           <h1 className="lg:mx-40 text-[7vw] lg:text-[4.44vw] px-5">
             <span className="-tracking-[.07vw] pl-24 capitalize [font-weight:200] leading-[1.2]">
-              we don’t just design for the <br className="hidden lg:block" />{" "}
-              present
+              we don’t just create components <br className="hidden lg:block" />
             </span>
             <span className="-tracking-[.07vw] text-white/[0.4] capitalize [font-weight:200] leading-[1.2]">
-              —we craft experiences for <br className="hidden lg:block" /> the
-              future.
+              —we envoke lasting experiences...
             </span>
           </h1>
 
-          <div className="w-full h-fit flex justify-end px-6 lg:pr-28 mt-16">
+          <div className="w-full h-fit flex justify-end px-6 lg:pr-28 mt-10 lg:mt-16">
             <p className="max-w-xl text-white/[0.4] relative right-0">
               <span className="pl-16">
                 Specializing in creating visually captivating designs that{" "}
@@ -211,8 +204,10 @@ const HeroTwo = () => {
         <ThemeScroll />
         <MouseDot />
 
-
-        <div className="w-full h-screen bg-zinc-600"></div>
+        <div className="w-full lg:h-[130vh] overflow-hidden relative">
+          <Cta3dPerspective />
+          {/* <BloomRHero /> */}
+        </div>
       </main>
     </div>
   );

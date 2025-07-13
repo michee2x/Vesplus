@@ -4,7 +4,7 @@ const MouseDot = () => {
   return (
     <div
       data-w-id="355065fb-6520-0a1f-949e-98567b8e7525"
-      className="mouse-wrapper z-[10000000] fixed flex items-center justify-center pointer-events-non inset-0 opacity-100"
+      className="mouse-wrapper hidden z-[10000000] fixed flex items-center justify-center pointer-events-non inset-0 opacity-100"
     >
       <div
         data-w-id="355065fb-6520-0a1f-949e-98567b8e7526"
