@@ -15,14 +15,14 @@ export default function BackgroundBeamsTwo() {
     }
   }, []);
 
-  const images = [
-    "https://framerusercontent.com/images/OqmqB0E9qAS1VdvYZEFiBEOYyQ.jpeg?scale-down-to=512",
-    "https://framerusercontent.com/images/lvGVLEmxOkomFjy2EsSMpiOn8A.jpg?scale-down-to=2048",
-    "https://framerusercontent.com/images/z4lmYYx4PG1X0rHcR8vtMrYKbek.png",
-    "https://framerusercontent.com/images/hEVNR5OGbspHZV7GaZfKNk8B3fs.png?scale-down-to=1024",
-    "https://framerusercontent.com/images/jcw2MsUlW3EJgHYvMmM4IJVAY.jpg?scale-down-to=1024",
-    "https://framerusercontent.com/images/bS5yI534QrgZ6plEFuXPt84TkA.png",
-  ];
+  // const images = [
+  //   "https://framerusercontent.com/images/OqmqB0E9qAS1VdvYZEFiBEOYyQ.jpeg?scale-down-to=512",
+  //   "https://framerusercontent.com/images/lvGVLEmxOkomFjy2EsSMpiOn8A.jpg?scale-down-to=2048",
+  //   "https://framerusercontent.com/images/z4lmYYx4PG1X0rHcR8vtMrYKbek.png",
+  //   "https://framerusercontent.com/images/hEVNR5OGbspHZV7GaZfKNk8B3fs.png?scale-down-to=1024",
+  //   "https://framerusercontent.com/images/jcw2MsUlW3EJgHYvMmM4IJVAY.jpg?scale-down-to=1024",
+  //   "https://framerusercontent.com/images/bS5yI534QrgZ6plEFuXPt84TkA.png",
+  // ];
 
   //Responsive transform values
 
