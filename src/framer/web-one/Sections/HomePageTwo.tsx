@@ -6,6 +6,8 @@ import ThemeScroll from "../components/ThemeScroll";
 import MouseDot from "../components/MouseDot";
 import Pulsing from "../components/Pulsing";
 import Hero from "../components/Hero";
+import GlowingBorder from "../components/GlowingBorder";
+import RotatingGlow from "../components/RotatingGlow";
 
 const HeroTwo = () => {
   return (
@@ -14,9 +16,11 @@ const HeroTwo = () => {
       <div className="w-full min-h-screen flex flex-col items-center">
         {/* HERO */}
         <Hero />
+        <RotatingGlow />
       </div>
 
       <main className="w-full h-auto">
+        <GlowingBorder />
         <div className="w-full mt-10 lg:mt-20 h-auto">
           <h1 className="lg:mx-40 text-[7vw] lg:text-[4.44vw] px-5">
             <span className="-tracking-[.07vw] pl-24 capitalize [font-weight:200] leading-[1.2]">
@@ -202,9 +206,10 @@ const HeroTwo = () => {
         </div>
 
         <ThemeScroll />
+        <GlowingBorder />
         <MouseDot />
 
-        <div className="w-full lg:h-[130vh] overflow-hidden relative">
+        <div className="w-full hidden lg:h-[130vh] overflow-hidden relative">
           <Cta3dPerspective />
           {/* <BloomRHero /> */}
         </div>

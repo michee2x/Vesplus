@@ -1,11 +1,13 @@
 import BackgroundBeamsTwo from "./BackgroundBeamsTwo";
+import Spotlight from "./Spotlight";
 
 const Hero = () => {
   return (
-    <div className="w-full flex pt-28 mb-10 justify-center h-auto">
-      <div className="w-full h-full flex items-center flex-col justify-center flex-shrink-0">
+    <div className="w-full flex relative mb-10 justify-center h-auto">
+      <Spotlight />
+      <div className="w-full lg:pt-28 h-full absolute z-10 flex items-center flex-col justify-center flex-shrink-0">
         {/* Button */}
-        <div className="relative mb-5">
+        <div className="relative lg:hidden mb-5">
           <div
             className="flex flex-nowrap gap-[4px] px-[16px] py-[4px] h-[min-content] w-[min-content] relative items-center justify-center overflow-hidden will-change-transform"
             style={{
@@ -44,7 +46,7 @@ const Hero = () => {
               data-framer-component-type="RichTextContainer"
             >
               <h6 className="text-[14px] text-center">
-                Supercharged Motion UI
+                Browse components
               </h6>
             </div>
           </div>
@@ -75,17 +77,7 @@ const Hero = () => {
           <BackgroundBeamsTwo />
         </div>
 
-        <div className="w-auto flex flex-col items-center justify-center lg:gap-6 lg:flex-row lg:mt-12 h-auto">
-          <span
-            style={{ backgroundColor: "rgb(0, 153, 255)" }}
-            className="w-fit h-fit text-nowrap px-6 py-3 text-[14px] text-white rounded-lg"
-          >
-            Browse Components
-          </span>
-          <span className="w-fit h-fit text-nowrap px-6 py-3 text-[14px] text-white rounded-lg">
-            star on github
-          </span>
-        </div>
+        
       </div>
     </div>
   );

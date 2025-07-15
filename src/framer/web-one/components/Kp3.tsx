@@ -110,21 +110,3 @@ export default function PerspectiveCardGallery({ className }:{className?:string}
   );
 }
 
-
-const partss = [
-  "translate3d(0px, 0px, 0px)",
-  `translate3d(200px, 0px, -100px)`,
-  `translate3d(400px, 0px, -200px)`,
-  `translate3d(600px, 0px, -300px)`,
-  `translate3d(800px, 0px, -400px)`,
-  `translate3d(-300px, 0px, 10px)`,
-];
-
-const partssTwo = [
-  "translate3d(0px, 0px, 0px)",
-  "translate3d(-200px, 0px, -100px)",
-  "translate3d(-400px, 0px, -200px)",
-  "translate3d(-600px, 0px, -300px)",
-  "translate3d(-800px, 0px, -400px)",
-  "translate3d(300px, 0px, 10px)",
-];
