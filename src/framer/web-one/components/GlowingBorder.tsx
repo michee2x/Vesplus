@@ -1,8 +1,9 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef} from "react";
+import React, { useRef} from "react";
+import {LuClipboardCopy} from "react-icons/lu"
 
-const GlowingBorder = () => {
+const GlowingBorder = ({children}:{children:React.ReactNode}) => {
 
     const container = useRef<HTMLDivElement | null>(null)
     const firstGlow = useRef<HTMLDivElement | null>(null);
@@ -72,7 +73,7 @@ const GlowingBorder = () => {
 
   return (
     <div className="w-screen min-h-screen flex items-center justify-center overflow-hidden lg:overflow-visible">
-      <div className="w-[90%] mx-auto h-auto flex relative items-center justify-center">
+      <div className="w-[90%] lg:w-[60%] mx-auto h-auto flex relative items-center justify-center">
         <div ref={container} className="w-full h-full absolute inset-0">
           <div className="w-full h-full flex items-center max-w-[1024px] flex-nowrap">
             <div
@@ -274,12 +275,13 @@ const GlowingBorder = () => {
                   );
                 })}
               </div>
+              <LuClipboardCopy className="absolute text-xl text-white/50 right-[16px] top-1/2 -translate-y-1/2" />
             </div>
             <div
               style={{ backgroundColor: "rgb(9, 9, 11)", flex: "1 0 0px" }}
               className="relative h-full  flex-nowrap w-full"
             >
-              <div className="h-full w-full"></div>
+              {children}
             </div>
           </div>
         </div>

@@ -20,7 +20,51 @@ const HeroTwo = () => {
       </div>
 
       <main className="w-full h-auto">
-        <GlowingBorder />
+        {/* ---------------------GLOWINGBORDERSECTION------------------
+        ---------------------GLOWINGBORDERSECTION------------------
+        ---------------------GLOWINGBORDERSECTION------------------ */}
+        <GlowingBorder>
+          <div className="w-full h-full">
+            <img
+              src="https://framerusercontent.com/images/lvGVLEmxOkomFjy2EsSMpiOn8A.jpg?scale-down-to=2048"
+              alt=""
+              className="w-full absolute inset-0 h-full object-cover"
+            />
+            <div className="relative h-full px-6 z-10">
+              <div className="font-medium absolute top-1/2 -translate-y-1/2 text-[1.6rem]">
+                <div className="flex flex-col flex-shrink-0">
+                  <h1 style={{ color: "rgb(255, 255, 255)" }}>
+                    Shaping bold brands
+                  </h1>
+                </div>
+                <div className="flex-col opacity-[0.8] flex-shrink-0">
+                  <h2 className="" style={{ color: "rgb(255,255,255)" }}>
+                    for the digital age.
+                  </h2>
+                </div>
+              </div>
+              <div className="absolute flex justify-between bottom-16">
+                {[
+                  "https://framerusercontent.com/images/OqmqB0E9qAS1VdvYZEFiBEOYyQ.jpeg?scale-down-to=512",
+                  "https://framerusercontent.com/images/lvGVLEmxOkomFjy2EsSMpiOn8A.jpg?scale-down-to=2048",
+                  "https://framerusercontent.com/images/z4lmYYx4PG1X0rHcR8vtMrYKbek.png",
+                ].map((e) => {
+                  return (
+                    <img
+                      key={e}
+                      src={e}
+                      alt=""
+                      className="size-20 border-[1.3px] border-white/40 object-cover"
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </GlowingBorder>
+        {/* ---------------------GLOWINGBORDERSECTION------------------
+        ---------------------GLOWINGBORDERSECTION------------------
+        ---------------------GLOWINGBORDERSECTION------------------ */}
         <div className="w-full mt-10 lg:mt-20 h-auto">
           <h1 className="lg:mx-40 text-[7vw] lg:text-[4.44vw] px-5">
             <span className="-tracking-[.07vw] pl-24 capitalize [font-weight:200] leading-[1.2]">
@@ -45,7 +89,9 @@ const HeroTwo = () => {
             </p>
           </div>
         </div>
-
+        {/* -------------------------THREE CARDS SECTION-----------------------
+        -------------------------THREE CARDS SECTION-----------------------
+        -------------------------THREE CARDS SECTION----------------------- */}
         <div className="lg:w-fit gap-4 flex flex-col lg:flex-row w-full px-4 h-fit mx-auto mt-16 lg:mt-40">
           <div className="lg:size-[21.3vw] w-full h-40 flex-col gap-4 lg:gap-0 rounded-xl bg-[#ffffff08] place-content-between border-[#ffffff0d] border-[1px] p-10 lg:py-[3.3vw] lg:px-[2.2vw] flex ">
             <h1 className="text-[5vw] font-bold leading-[3.7vw] -tracking-[0.2vw]">
@@ -108,9 +154,10 @@ const HeroTwo = () => {
             </h5>
           </div>
         </div>
-
+        {/* -------------------------THREE CARDS SECTION-----------------------
+        -------------------------THREE CARDS SECTION-----------------------
+        -------------------------THREE CARDS SECTION----------------------- */}
         <RotatingCards />
-
         <div className="w-full flex flex-col justify-center rounded-2xl items-center py-32 px-4 mt-7 lg:mt-40 min-h-screen">
           <div className="flex gap-2 items-center">
             <Pulsing />
@@ -204,11 +251,8 @@ const HeroTwo = () => {
 
           <ButtonTwo className="mt-16" text="Explore Component Variations" />
         </div>
-
         <ThemeScroll />
-        <GlowingBorder />
         <MouseDot />
-
         <div className="w-full hidden lg:h-[130vh] overflow-hidden relative">
           <Cta3dPerspective />
           {/* <BloomRHero /> */}
