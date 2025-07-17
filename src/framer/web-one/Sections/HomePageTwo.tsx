@@ -8,6 +8,7 @@ import Pulsing from "../components/Pulsing";
 import Hero from "../components/Hero";
 import GlowingBorder from "../components/GlowingBorder";
 import RotatingGlow from "../components/RotatingGlow";
+import ThreeCards from "./ThreeCards";
 
 const HeroTwo = () => {
   return (
@@ -92,68 +93,7 @@ const HeroTwo = () => {
         {/* -------------------------THREE CARDS SECTION-----------------------
         -------------------------THREE CARDS SECTION-----------------------
         -------------------------THREE CARDS SECTION----------------------- */}
-        <div className="lg:w-fit gap-4 flex flex-col lg:flex-row w-full px-4 h-fit mx-auto mt-16 lg:mt-40">
-          <div className="lg:size-[21.3vw] w-full h-40 flex-col gap-4 lg:gap-0 rounded-xl bg-[#ffffff08] place-content-between border-[#ffffff0d] border-[1px] p-10 lg:py-[3.3vw] lg:px-[2.2vw] flex ">
-            <h1 className="text-[5vw] font-bold leading-[3.7vw] -tracking-[0.2vw]">
-              360
-            </h1>
-            <h5>HARDWORK + DEDICATION</h5>
-            <div className="w-full bg-[#1c1c1c] rounded-xl relative overflow-hidden">
-              <div
-                className="card-line-progress bg-[#c5fb67] h-[1.11vw] rounded-[24px] metrics"
-                style={{
-                  transform:
-                    "translate3d(-20%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
-                  transformStyle: "preserve-3d",
-                }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="lg:h-[21.3vw] w-full h-40 lg:w-auto items-center rounded-xl bg-[#ffffff08] justify-between border-[#ffffff0d] border-[1px] lg:py-[3.3vw] p-10 lg:px-[2.2vw] flex ">
-            <h3 className="tracking-[.07vw] text-[3.33vw]">
-              WO
-              <br />
-              RK
-            </h3>
-            <h5 className="rotate-90 transform uppercase text-[.89vw] tracking-[1.44vw]">
-              HARD
-            </h5>
-            <h2 className="text-[5vw] rotate-90 transform">24/7</h2>
-            <img
-              width="Auto"
-              height="Auto"
-              alt="arrow"
-              src="https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/67de676f1c598cfa54564d4e_Arrow.svg"
-              loading="eager"
-              className="size-[4.44vw] object-cover inline-block"
-            />
-          </div>
-
-          <div className="lg:size-[21.3vw] w-full h-40 flex-col rounded-xl bg-[#ffffff08] place-content-between border-[#ffffff0d] border-[1px] py-[3.3vw] px-[2.2vw] flex ">
-            <div className="flex items-center justify-between">
-              <h4
-                style={{ WebkitTextStroke: ".07vw white" }}
-                className="text-transparent font-bold text-[10vw] lg:text-[2.78vw]"
-              >
-                FUTURE
-              </h4>
-              <img
-                width="64"
-                height="64"
-                alt="arrow right icon "
-                src="https://cdn.prod.website-files.com/67de676f1c598cfa54564c7a/67de676f1c598cfa54564cc9_ArrowRight.svg"
-                className="inline-block size-[40px] lg:size-[64px] object-cover"
-                loading="eager"
-              />
-            </div>
-            <h5 className="text-[3.5vw] lg:text-[.89vw]">
-              Transforming with
-              <br />
-              creative Design
-            </h5>
-          </div>
-        </div>
+        <ThreeCards />
         {/* -------------------------THREE CARDS SECTION-----------------------
         -------------------------THREE CARDS SECTION-----------------------
         -------------------------THREE CARDS SECTION----------------------- */}

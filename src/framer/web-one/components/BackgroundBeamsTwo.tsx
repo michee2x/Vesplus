@@ -168,7 +168,7 @@ export default function BackgroundBeamsTwo() {
                   cards.current[idx] = el;
                 }}
                 key={`${e?.transform}`}
-                className={`right-0 w-[8rem] rounded-lg lg:w-[16rem] duration-300 absolute will-change-[opacity]`}
+                className={`right-0 w-[9rem] rounded-lg lg:w-[16rem] duration-300 absolute will-change-[opacity]`}
                 style={{
                   backgroundImage: `url("/kpr/card-left-0${
                     idx + 1
@@ -208,9 +208,9 @@ export default function BackgroundBeamsTwo() {
                 ref={(el) => {
                   cardsTwo.current[idx] = el;
                 }}
-                className={`left-0 w-[8rem] rounded-lg lg:w-[16rem] duration-300 absolute will-change-transform `}
+                className={`left-0 w-[9rem] rounded-lg lg:w-[16rem] duration-300 absolute will-change-transform `}
                 style={{
-                  backgroundImage: `url("/kpr/card-left-0${idx + 1}.webp")`,
+                  backgroundImage: `url("/kpr/card-right-0${idx + 1}.webp")`,
                   transform: transformValue?.transform,
                   transformStyle: "preserve-3d",
                   backgroundSize: "100% 100%",
